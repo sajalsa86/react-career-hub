@@ -13,10 +13,19 @@ const JobDetails = () => {
     const idInt = parseInt(id);
     const job = jobs.find(job => job.id === idInt);
     // console.log(job)
+    /*    const handleJobApplication = () => {
+           saveJobApplication(idInt);
+           toast("You have Applied Successfully !!")
+       }; */
     const handleJobApplication = () => {
-        saveJobApplication(idInt);
-        toast("You have Applied Successfully !!")
+        const isSaved = saveJobApplication(idInt);
+        if (isSaved) {
+            toast.success("You have Applied Successfully !!");
+        } else {
+            toast.error("You have already applied for this job.");
+        }
     };
+
     return (
         <div>
             <h2 className="my-5 text-center text-3xl font-bold">Job Details</h2>

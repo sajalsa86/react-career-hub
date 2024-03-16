@@ -1,4 +1,4 @@
-
+/* 
 const getStoredJobApplication = () => {
     const storedJobApplication = localStorage.getItem('job-application');
     if (storedJobApplication) {
@@ -14,5 +14,27 @@ const saveJobApplication = id => {
         storedJobApplications.push(id);
         localStorage.setItem('job-application', JSON.stringify(storedJobApplications));
     }
+
 };
+export { getStoredJobApplication, saveJobApplication }; */
+
+const getStoredJobApplication = () => {
+    const storedJobApplication = localStorage.getItem('job-application');
+    if (storedJobApplication) {
+        return JSON.parse(storedJobApplication);
+    }
+    return [];
+};
+
+const saveJobApplication = id => {
+    const storedJobApplications = getStoredJobApplication();
+    const exists = storedJobApplications.find(jobId => jobId === id);
+    if (!exists) {
+        storedJobApplications.push(id);
+        localStorage.setItem('job-application', JSON.stringify(storedJobApplications));
+        return true; // Indicate that job application was successfully saved
+    }
+    return false; // Indicate that job application already exists
+};
+
 export { getStoredJobApplication, saveJobApplication };
