@@ -6,7 +6,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { saveJobApplication, storedJobApplications } from "../Utilitis/LocalStorage";
+import { saveJobApplication } from "../Utilitis/LocalStorage";
 const JobDetails = () => {
     const jobs = useLoaderData();
     const { id } = useParams();
@@ -14,12 +14,8 @@ const JobDetails = () => {
     const job = jobs.find(job => job.id === idInt);
     // console.log(job)
     const handleJobApplication = () => {
-        if (storedJobApplications(idInt)) { // Check if job application already exists
-            toast.error("You have already applied for this job!"); // Show toast message
-        } else {
-            saveJobApplication(idInt);
-            toast.success("You have Applied Successfully !!");
-        }
+        saveJobApplication(idInt);
+        toast("You have Applied Successfully !!")
     };
     return (
         <div>
